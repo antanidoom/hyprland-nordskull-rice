@@ -1,0 +1,102 @@
+{
+    "position": "top",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+    "mpris",
+    "network",
+    "cpu",
+    "temperature#cpu",      // Modulo specifico CPU
+    "custom/gpu-usage",     // Modulo carico GPU
+    "temperature#gpu",      // Modulo specifico GPU
+    "pulseaudio",
+    "clock",
+    "custom/notification"
+    ],
+
+  "clock": {
+        "format": " {:%a %d %H:%M}",
+        "tooltip": false,
+        "on-click": "killall gsimplecal || gsimplecal"
+    },
+
+    "mpris": {
+        "player": "spotify",
+        "format": "  {artist} - {title}",
+        "format-paused": "  <i>{artist} - {title}</i>",
+        "max-length": 30,
+        "interval": 1,
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "playerctl -p spotify next",
+        "tooltip-format": "{player} ({status})\n{artist} - {title}\nAlbum: {album}"
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": " {ifname} {ipaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nStatus: {state}",
+        "on-click": "kitty --class kitty-floating -e nmtui"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "tooltip": false // Disabilito il tooltip qui per averlo solo sulla temp, o true se preferisci
+    },
+
+    "temperature#cpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "CPU Temp: {temperatureC}°C"
+    },
+
+    "custom/gpu-usage": {
+        "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
+        "format": "󰢮 {}%",
+        "interval": 5,
+        "return-type": "",
+        "tooltip": false
+    },
+
+    "temperature#gpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "GPU Temp: {temperatureC}°C"
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "{0} {icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂜",
+            "dnd-notification": "󰂠",
+            "dnd-none": "󰪓",
+            "inhibited-notification": "󰂛",
+            "inhibited-none": "󰪑",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}

@@ -1,0 +1,73 @@
+/* --- GLOBAL --- */
+* {
+    font-family:
+        "JetBrainsMono Nerd Font", "MesloLGS Nerd Font Mono", monospace;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Finestra principale: DEVE essere trasparente per far vedere i bordi arrotondati */
+window {
+    margin: 0px;
+    border: 0px;
+    background-color: transparent; /* Questo è corretto */
+}
+
+/* Il contenitore interno: Qui diamo il colore e l'opacità */
+#outer-box {
+    margin: 0px;
+
+    /* 1. Forza la rimozione di immagini di sfondo ereditate dal tema GTK */
+    background-image: none;
+
+    /* 2. Usa RGBA invece di HEX. Molto più sicuro. */
+    /* 30, 34, 48 è il colore scuro (Nord). 0.95 è l'opacità. */
+    background-color: rgba(30, 34, 48, 0.65);
+
+    /* Bordo Blu (o quello che preferisci) */
+    border: 2px solid #54727a;
+
+    border-radius: 16px;
+}
+
+/* Barra di ricerca */
+#input {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3b4252;
+    color: #eceff4;
+}
+
+#input:focus {
+    border: 2px solid #88c0d0;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Area di scorrimento */
+#scroll {
+    margin: 5px;
+    border: none;
+}
+
+/* Elementi lista */
+#entry {
+    margin: 5px 10px;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    color: #d8dee9;
+}
+
+#entry:selected {
+    background-color: #434c5e;
+    color: #88c0d0;
+    border-radius: 8px;
+}
+
+#img {
+    margin-right: 10px;
+    background-color: transparent;
+}

@@ -1,0 +1,223 @@
+/* Niente import esterni. Tutto definito qui. */
+
+/* --- CONFIGURAZIONE GLOBALE (Nord Theme Fonts) --- */
+* {
+    font-family: "MesloLGS Nerd Font Mono Bold", "JetBrainsMono Nerd Font";
+    font-size: 15px;
+    min-height: 0;
+    font-weight: bold;
+}
+
+/* --- BARRA PRINCIPALE --- */
+window#waybar {
+    background-color: #2e3440; /* Nord Polar Night 1 (Sfondo scuro) */
+    color: #d8dee9; /* Nord Snow Storm (Testo chiaro) */
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    border-bottom: 2px solid #3b4252; /* Bordo leggermente più chiaro */
+}
+
+#window {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* --- TOOLTIP --- */
+tooltip {
+    background: #3b4252;
+    border: 1px solid #81a1c1;
+}
+tooltip label {
+    color: #d8dee9;
+}
+
+/* --- WORKSPACES (Corretto per Hyprland) --- */
+#workspaces button {
+    padding: 0 8px;
+    color: #4c566a; /* Grigio scuro (Nord Polar Night 4) per i desktop NON attivi */
+    background: transparent;
+    transition: all 0.3s ease; /* Transizione fluida quando cambi desktop */
+}
+
+/* Quando passi il mouse sopra un desktop inattivo */
+#workspaces button:hover {
+    background: #3b4252;
+    color: #81a1c1; /* Azzurro chiaro */
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+/* QUESTO è il desktop su cui ti trovi ora */
+#workspaces button.active {
+    background-color: #434c5e; /* Sfondo leggermente più chiaro (Nord Polar Night 2) */
+    color: #eceff4; /* Bianco Ghiaccio (Nord Snow Storm) - Ben visibile */
+    border-bottom: 2px solid #88c0d0; /* Linea azzurra (Nord Cyan) */
+    border-top: 2px solid transparent; /* Per mantenere l'allineamento */
+}
+
+/* Urgente (se un'app richiede attenzione su un altro desktop) */
+#workspaces button.urgent {
+    background-color: #bf616a; /* Rosso */
+    color: #eceff4;
+}
+
+/* --- MODULI: RESET E SPAZIATURA --- */
+/*
+   Qui definiamo la regola d'oro:
+   Ogni modulo ha un margine destro di 12px per staccarsi dal successivo.
+   Tranne quelli che fanno parte di un "gruppo" (che gestiamo dopo).
+*/
+
+#network,
+#pulseaudio,
+#clock,
+#custom-notification,
+#tray {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 12px; /* <--- DISTANZA UNIFICATA */
+}
+
+/* --- STILI SINGOLI --- */
+
+/* NETWORK: Nord Teal */
+#network {
+    color: #778899;
+    border-bottom: 2px solid #778899;
+    background-color: transparent;
+}
+#network.disconnected {
+    color: #bf616a;
+    border-bottom-color: #bf616a;
+}
+
+/* AUDIO: Nord Cyan */
+#pulseaudio {
+    color: #779999;
+    border-bottom: 2px solid #779999;
+    background-color: transparent;
+}
+#pulseaudio.muted {
+    color: #4c566a;
+    border-bottom-color: #4c566a;
+}
+
+/* OROLOGIO: Nord White/Ice */
+#clock {
+    color: #779999;
+    border-bottom: 2px solid #779999;
+}
+
+/* TRAY */
+#tray {
+    margin-right: 12px;
+}
+
+/* NOTIFICHE SWAYNC: Nord Purple */
+#custom-notification {
+    color: #b48ead;
+    border-bottom: 2px solid #b48ead;
+    margin-right: 20px; /* Un po' più di spazio dal bordo destro schermo */
+}
+
+/* --- GRUPPI HARDWARE (CPU & GPU) --- */
+/*
+   Logica:
+   1. Sfondo scuro unificato (#3B4252)
+   2. Il primo elemento del gruppo ha bordi arrotondati a sinistra.
+   3. L'ultimo elemento ha bordi arrotondati a destra E il margine di distacco.
+   4. Nessun margine TRA i due elementi del gruppo.
+*/
+
+/* --- GRUPPO CPU (Nord Frost Blue Scuro) --- */
+#cpu {
+    background-color: #3b4252;
+    color: #779977;
+    border-bottom: 2px solid #779977;
+
+    margin-right: 0px; /* Attaccato alla temp */
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-left: 10px;
+    padding-right: 2px;
+
+    border-top-left-radius: 6px;
+}
+
+#temperature.cpu {
+    background-color: #3b4252;
+    color: #779977;
+    border-bottom: 2px solid #779977;
+
+    margin-left: 0px; /* Attaccato alla cpu */
+    margin-right: 12px; /* SPAZIO DI SEPARAZIONE DAL GRUPPO GPU */
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-left: 2px;
+    padding-right: 10px;
+
+    border-top-right-radius: 6px;
+}
+
+/* --- GRUPPO GPU (Nord Frost Blue Chiaro / Teal) --- */
+#custom-gpu-usage {
+    background-color: #3b4252;
+    color: #779977; /* Colore diverso per distinguere dalla CPU */
+    border-bottom: 2px solid #779977;
+
+    margin-right: 0px; /* Attaccato alla temp */
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-left: 10px;
+    padding-right: 2px;
+
+    border-top-left-radius: 6px;
+}
+
+#temperature.gpu {
+    background-color: #3b4252;
+    color: #779977;
+    border-bottom: 2px solid #779977;
+
+    margin-left: 0px; /* Attaccato all'usage */
+    margin-right: 12px; /* SPAZIO DI SEPARAZIONE DALL'OROLOGIO */
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-left: 2px;
+    padding-right: 10px;
+
+    border-top-right-radius: 6px;
+}
+
+/* Gestione Allarmi Temperatura (Rosso Nord) */
+#temperature.cpu.critical,
+#temperature.gpu.critical {
+    background-color: #bf616a;
+    color: #eceff4; /* Testo bianco su sfondo rosso */
+    border-bottom-color: #bf616a;
+}
+
+/* --- SPOTIFY (Nord Green) --- */
+#mpris {
+    color: #a3be8c; /* Verde Nord Aurora */
+    border-bottom: 2px solid #a3be8c;
+
+    /* Spaziatura standard che abbiamo definito prima */
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 12px;
+}
+
+/* Quando è in pausa, lo rendiamo grigio "spento" */
+#mpris.paused {
+    color: #4c566a; /* Grigio scuro */
+    border-bottom: 2px solid #4c566a;
+}

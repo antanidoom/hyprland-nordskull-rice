@@ -1,0 +1,55 @@
+[general]
+# Velocità di aggiornamento (più alto = più fluido)
+framerate = 60
+# Sensibilità delle barre
+sensitivity = 100
+# Larghezza barre (più alto = meno barre ma più larghe)
+bar_width = 3
+# Spazio tra le barre
+bar_spacing = 1
+
+[input]
+# FONDAMENTALE SU HYPRLAND/ARCH:
+# Usa 'pulse' (che viene gestito da Pipewire) per catturare l'audio
+method = pulse
+source = auto
+
+[output]
+# Usiamo ncurses per il terminale
+method = ncurses
+
+[color]
+# Attiviamo il gradiente per fare l'effetto figo
+gradient = 1
+
+# GRADIENTE NORD THEME (Dal basso verso l'alto)
+# 1 = Basso (Viola/Blu scuro)
+# ...
+# 8 = Alto (Bianco ghiaccio/Cyan esplosivo)
+
+gradient_color_1 = '#2E3440'
+gradient_color_2 = '#3B4252'
+gradient_color_3 = '#434C5E'
+gradient_color_4 = '#4C566A'
+gradient_color_5 = '#5E81AC'
+gradient_color_6 = '#81A1C1'
+gradient_color_7 = '#88C0D0'
+gradient_color_8 = '#ECEFF4'
+
+[smoothing]
+# L'algoritmo Monstercat rende le barre più connesse e curve
+monstercat = 1
+waves = 0
+
+# INTEGRAL (0 - 100): Questo è il parametro principale per la "morbidezza".
+# Valori alti (85-95) rendono il movimento molto lento e fluido.
+# Valori bassi rendono le barre scattose.
+integral = 90
+
+# GRAVITY (0 - 100): Quanto velocemente le barre "cadono" giù.
+# Abbassalo a 50-60 per farle scendere lentamente (effetto gravità lunare).
+gravity = 60
+
+# Ignora i piccoli rumori di fondo
+ignore = 0
+noise_reduction = 0.77
