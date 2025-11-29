@@ -16,18 +16,14 @@ window {
 /* Il contenitore interno: Qui diamo il colore e l'opacità */
 #outer-box {
     margin: 0px;
-
-    /* 1. Forza la rimozione di immagini di sfondo ereditate dal tema GTK */
     background-image: none;
-
-    /* 2. Usa RGBA invece di HEX. Molto più sicuro. */
-    /* 30, 34, 48 è il colore scuro (Nord). 0.95 è l'opacità. */
-    background-color: rgba(30, 34, 48, 0.65);
-
-    /* Bordo Blu (o quello che preferisci) */
-    border: 2px solid #54727a;
-
+    background-color: rgba(30, 34, 48, 0.95);
+    border: 2px solid #88c0d0;
     border-radius: 16px;
+
+    /* --- QUESTA È LA SOLUZIONE --- */
+    /* Aggiunge spazio tra il bordo blu e il contenuto interno */
+    padding: 10px;
 }
 
 /* Barra di ricerca */
@@ -54,8 +50,9 @@ window {
 
 /* Elementi lista */
 #entry {
-    margin: 5px 10px;
-    padding: 10px;
+    /* Mettiamo 0px ai lati, tanto c'è il padding del box sopra */
+    margin: 2px 0px;
+    padding: 8px 10px;
     border: none;
     background-color: transparent;
     color: #d8dee9;
@@ -64,10 +61,18 @@ window {
 #entry:selected {
     background-color: #434c5e;
     color: #88c0d0;
+
+    /* Arrotondamento leggermente più piccolo del box esterno per estetica */
     border-radius: 8px;
 }
 
 #img {
     margin-right: 10px;
     background-color: transparent;
+}
+
+/* Opzionale: Nascondere o stilizzare la scrollbar se da fastidio */
+#scroll {
+    margin: 5px;
+    border: none;
 }

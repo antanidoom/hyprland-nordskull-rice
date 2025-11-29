@@ -62,3 +62,30 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # --- AVVIO STARSHIP (Prompt col Teschio) ---
 eval "$(starship init zsh)"
+
+# --- Per copiare il rice nel DOTFILE per il commit su GIT ---
+function update-rice() {
+    echo "🗑️  Pulisco vecchie config nel repo..."
+    # Rimuoviamo le cartelle vecchie dal backup per evitare duplicati
+    rm -rf ~/dotfiles/.config/hypr
+    rm -rf ~/dotfiles/.config/waybar
+    rm -rf ~/dotfiles/.config/kitty
+    rm -rf ~/dotfiles/.config/wofi
+    rm -rf ~/dotfiles/.config/swaync
+    rm -rf ~/dotfiles/.config/cava
+    rm -rf ~/dotfiles/.config/neofetch  # <--- CORRETTO (era fastfetch)
+
+    echo "📂 Copio le nuove configurazioni..."
+    # Copiamo i file aggiornati dal sistema al backup
+    \cp -f ~/.zshrc ~/dotfiles/
+    \cp -rf ~/.config/hypr ~/dotfiles/.config/
+    \cp -rf ~/.config/waybar ~/dotfiles/.config/
+    \cp -rf ~/.config/kitty ~/dotfiles/.config/
+    \cp -rf ~/.config/wofi ~/dotfiles/.config/
+    \cp -rf ~/.config/swaync ~/dotfiles/.config/
+    \cp -rf ~/.config/cava ~/dotfiles/.config/
+    \cp -rf ~/.config/neofetch ~/dotfiles/.config/  # <--- CORRETTO
+    \cp -f ~/.config/starship.toml ~/dotfiles/.config/
+    
+    echo "✅ Fatto! Ora vai in ~/dotfiles e fai git push."
+}
