@@ -62,7 +62,7 @@ Clone this repository and copy the config files to your local folder. Backup you
 code Bash
 
 ```bash
-git clone https://github.com/antanidoom/dotfiles.git
+git clone https://github.com/antanidoom/hyprland-nordskull-rice.git
 cd dotfiles
 cp -r .config/* ~/.config/
 cp .zshrc ~/
