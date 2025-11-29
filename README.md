@@ -53,8 +53,8 @@ You need the following packages (Official Repos + AUR):
 yay -S hyprland waybar kitty wofi swaync hyprlock hypridle \
        zsh starship ttf-jetbrains-mono-nerd nwg-look \
        nordic-theme papirus-icon-theme-nordic-git-folders \
-       vesktop cava fastfetch thunar-archive-plugin 
-       bemoji wl-clipboard wtype noto-fonts-emoji	
+       vesktop cava thunar-archive-plugin bemoji wl-clipboard 
+       wtype noto-fonts-emoji	
 ```
 
 ### 2. Clone & Copy
