@@ -70,7 +70,7 @@ cp -r .config/* ~/.config/
 cp .zshrc ~/
 ```
 
-Copy the configs from this repo to the system folders for SDDM:
+### 3. Copy the configs from this repo to the system folders for SDDM:
 
 ```bash
 # Config File
