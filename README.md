@@ -5,7 +5,10 @@
 
 <!-- HERO IMAGE -->
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/7a9210d0-9f21-4c2d-b4b6-9ea7abe4dad9" alt="Hero Desktop" width="100%">
+  <img src="https://github.com/user-attachments/assets/375c285e-7fa8-4dbf-a9ec-9655668e5a34" alt="Hero Desktop" width="100%">
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/18bb8a44-6853-4ff2-b10c-acae503d65c5" alt="Hero Desktop" width="100%">
 </p>
 
 ## 🧩 The Rice
@@ -32,7 +35,7 @@ This setup focuses on consistency. Every component (from the shell to the browse
 
 <p align="center">
   <!-- Wofi / Launcher -->
-  <img src="https://github.com/user-attachments/assets/18bb8a44-6853-4ff2-b10c-acae503d65c5" width="48%" alt="Wofi Launcher" />
+  <img src="https://github.com/user-attachments/assets/7a9210d0-9f21-4c2d-b4b6-9ea7abe4dad9" width="48%" alt="Wofi Launcher" />
   <!-- Firefox -->
   <img src="https://github.com/user-attachments/assets/f3d0bf24-c98d-4551-94f7-0ad25953d53c" width="48%" alt="Firefox Nord" />
 </p>
