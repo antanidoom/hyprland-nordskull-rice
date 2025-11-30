@@ -20,10 +20,10 @@ This setup focuses on consistency. Every component (from the shell to the browse
 | **Terminal** | Kitty | Padding + Blur + Nord colors |
 | **Bar** | Waybar | Custom modules & Tooltips |
 | **Launcher** | Wofi | Transparent with blur effect |
-| **Notifications** | SwayNC | Nord theme + Media player |
+| **Notifications** | SwayNC | Tokyio-night theme + Media player |
 | **Lockscreen** | Hyprlock | Blurred screenshot background + PAM fix |
 | **Idle Daemon** | Hypridle | Auto-lock & Screen off logic |
-| **File Manager** | Thunar | Nordic Theme + Custom Thumbnails |
+| **File Manager** | Thunar | Tokyo-night Theme + Custom Thumbnails |
 | **Browser** | Firefox | Custom `userChrome.css` (Transparent Header) |
 | **Visualizer** | Cava | Nord Gradient config |
 | **Display Manager** | SDDM | Sugar Candy Theme (Nordized) |
@@ -50,11 +50,10 @@ This setup focuses on consistency. Every component (from the shell to the browse
 You need the following packages (Official Repos + AUR):
 
 ```bash
-yay -S hyprland waybar kitty wofi swaync hyprlock hypridle \
-       zsh starship ttf-jetbrains-mono-nerd nwg-look \
-       nordic-theme papirus-icon-theme-nordic-git-folders \
+yay -S hyprland waybar kitty wofi swaync hyprlock hypridle
+       zsh starship ttf-jetbrains-mono-nerd nwg-look tokyonight-gtk-theme-git
        vesktop cava thunar-archive-plugin bemoji wl-clipboard 
-       wtype noto-fonts-emoji	
+       wtype noto-fonts-emoji pavucontrol	
 ```
 
 ### 2. Clone & Copy
@@ -84,8 +83,4 @@ cp .zshrc ~/
 
 - **Floating Network Manager:** Clicking the WiFi icon on Waybar opens `nmtui` in a floating, blurred Kitty window instead of the standard menu.
 
-## ❤️ Credits
 
-- **Colors:** [Nord Theme](https://www.nordtheme.com/)
-- **Icons:** [Papirus Nord](https://github.com/Adapta-Project/Papirus-Nord)
-- **Firefox CSS:** Custom tweaks based on Nord Firefox.
