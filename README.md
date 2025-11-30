@@ -53,10 +53,10 @@ This setup focuses on consistency. Every component (from the shell to the browse
 You need the following packages (Official Repos + AUR):
 
 ```bash
-yay -S hyprland waybar kitty wofi swaync hyprlock hypridle
-       zsh starship ttf-jetbrains-mono-nerd nwg-look tokyonight-gtk-theme-git
-       vesktop cava thunar-archive-plugin bemoji wl-clipboard sddm-sugar-candy-git
-       wtype noto-fonts-emoji pavucontrol	
+yay -S hyprland waybar kitty wofi swaync hyprlock hypridle tokyonight-gtk-theme-git sddm-sugar-candy-git 
+       zsh starship ttf-jetbrains-mono-nerd nwg-look dropbox thunar-dropbox libappindicator-gtk3
+       vesktop cava thunar-archive-plugin bemoji wl-clipboard pavucontrol 
+       wtype noto-fonts-emoji piper libratbag
 ```
 
 ### 2. Clone & Copy
