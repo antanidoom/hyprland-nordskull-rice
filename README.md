@@ -52,14 +52,13 @@ You need the following packages (Official Repos + AUR):
 ```bash
 yay -S hyprland waybar kitty wofi swaync hyprlock hypridle
        zsh starship ttf-jetbrains-mono-nerd nwg-look tokyonight-gtk-theme-git
-       vesktop cava thunar-archive-plugin bemoji wl-clipboard 
+       vesktop cava thunar-archive-plugin bemoji wl-clipboard sddm-sugar-candy-git
        wtype noto-fonts-emoji pavucontrol	
 ```
 
 ### 2. Clone & Copy
 
 Clone this repository and copy the config files to your local folder. Backup your existing configs first!
-code Bash
 
 ```bash
 git clone https://github.com/antanidoom/hyprland-nordskull-rice.git
@@ -67,6 +66,20 @@ cd dotfiles
 cp -r .config/* ~/.config/
 cp .zshrc ~/
 ```
+
+Copy the configs from this repo to the system folders for SDDM:
+
+```bash
+# Config File
+sudo cp ~/dotfiles/sddm/sddm.conf /etc/sddm.conf
+
+# Theme Config (Colors & Fonts)
+sudo cp ~/dotfiles/sddm/sugar-candy-theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
+
+# Background Image
+sudo cp ~/dotfiles/wallpapers/fontanelle.png /usr/share/sddm/themes/sugar-candy/wall_nord.png
+```
+
 ## ⌨️ Keybindings (Cheatsheet)
 
 | Key | Action |
@@ -82,5 +95,3 @@ cp .zshrc ~/
 ## 🛠️ Custom Scripts
 
 - **Floating Network Manager:** Clicking the WiFi icon on Waybar opens `nmtui` in a floating, blurred Kitty window instead of the standard menu.
-
-
