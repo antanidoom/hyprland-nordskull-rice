@@ -1,0 +1,43 @@
+/* Finestra Principale */
+#window {
+    background-color: rgba(20, 24, 32, 0.95); /* Nord Darker */
+    border: 2px solid #88C0D0; /* Bordo Azzurro */
+    border-radius: 12px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* NASCONDI LA BARRA DI RICERCA */
+/* Questo è fondamentale per l'aspetto "Menu" */
+#input {
+    display: none;
+    visibility: hidden;
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+/* Contenitore interno */
+#outer-box {
+    margin: 5px;
+    background-color: transparent;
+}
+
+/* Le righe del menu */
+#entry {
+    margin: 5px 0px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    color: #D8DEE9;
+    background-color: transparent;
+}
+
+/* Quando selezioni */
+#entry:selected {
+    background-color: #3B4252; /* Grigio scuro */
+    color: #88C0D0; /* Testo Azzurro */
+    font-weight: extra-bold;
+    border: none;
+}

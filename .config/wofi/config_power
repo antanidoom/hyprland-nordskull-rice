@@ -1,0 +1,14 @@
+hide_search=true
+width=250
+height=210
+location=center
+show=dmenu
+prompt=Ciao Emanuele
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+valign=fill
+orientation=vertical
+content_halign=fill
+insensitive=true

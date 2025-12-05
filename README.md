@@ -18,7 +18,7 @@ This setup focuses on consistency. Every component (from the shell to the browse
 | Component | Tech Stack | Notes |
 | :--- | :--- | :--- |
 | **OS** | Arch Linux | BTW |
-| **WM** | Hyprland | With heavy blur & animations |
+| **Compositor** | Wayland + Hyprland | With heavy blur & animations |
 | **Shell** | Zsh | With **Starship** prompt (Skull symbol) |
 | **Terminal** | Kitty | Padding + Blur + Nord colors |
 | **Bar** | Waybar | Custom modules & Tooltips |
@@ -88,12 +88,22 @@ sudo cp ~/dotfiles/wallpapers/fontanelle.png /usr/share/sddm/themes/sugar-candy/
 | Key | Action |
 | :--- | :--- |
 | `SUPER` + `ENTER` | Open **Kitty** Terminal |
-| `SUPER` + `R` | Open **Wofi** App Launcher |
+| `SUPER` + `SPACE` | Open **Wofi** App Launcher |
 | `SUPER` + `Q` | Close active window |
 | `SUPER` + `E` | Open **Thunar** File Manager |
 | `SUPER` + `B` | Open **Firefox** |
 | `SUPER` + `P` | Media Play/Pause (Spotify) |
+| `SUPER` + `M` | Lock/Suspend/Logout/Shutdown Menu |
+| `SUPER` + `V` | Floating Window Mode |
+| `SUPER` + `O` | Psuedo-tiling Window Mode |
+| `SUPER` + `J` | Split-tiling Window Mode |
+| `SUPER` + `S` | Special Workspace |
 | `SUPER` + `.` | Open Emoji Picker (**Bemoji**) |
+| `SUPER` + `0 to 9` | Open new to workspace |
+| `SUPER` + `SHIFT` + `0 to 9` | Move windows to workspace |
+| `SUPER` + `LMB` | Move windows |
+| `SUPER` + `RMB` | Re-size windows |
+
 
 ## 🛠️ Custom Scripts
 
