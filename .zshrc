@@ -55,6 +55,11 @@ alias yr='yay -Rns'
 alias v='nvim' # Se usi neovim, altrimenti metti nano
 alias nano='nano'
 
+# Sostituisci neofetch con fastfetch
+alias neofetch='fastfetch'
+alias rice='fastfetch'
+alias fetch='fastfetch'
+
 # --- ATTIVAZIONE PLUGINS ---
 # Assicurati di averli installati: sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -73,7 +78,7 @@ function update-rice() {
     rm -rf ~/dotfiles/.config/wofi
     rm -rf ~/dotfiles/.config/swaync
     rm -rf ~/dotfiles/.config/cava
-    rm -rf ~/dotfiles/.config/neofetch  # <--- CORRETTO (era fastfetch)
+    rm -rf ~/dotfiles/.config/fastfetch  # <--- CORRETTO (era neofetch)
 
     echo "📂 Copio le nuove configurazioni..."
     # Copiamo i file aggiornati dal sistema al backup
@@ -84,7 +89,7 @@ function update-rice() {
     \cp -rf ~/.config/wofi ~/dotfiles/.config/
     \cp -rf ~/.config/swaync ~/dotfiles/.config/
     \cp -rf ~/.config/cava ~/dotfiles/.config/
-    \cp -rf ~/.config/neofetch ~/dotfiles/.config/  # <--- CORRETTO
+    \cp -rf ~/.config/fastfetch ~/dotfiles/.config/  # <--- CORRETTO
     \cp -f ~/.config/starship.toml ~/dotfiles/.config/
     
     echo "✅ Fatto! Ora vai in ~/dotfiles e fai git push."
