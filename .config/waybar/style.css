@@ -183,20 +183,20 @@ tooltip label {
     border-top-left-radius: 6px;
 }
 
-#temperature.gpu {
+#custom-gpu-temp {
     background-color: #3b4252;
-    color: #779977;
+    color: #779977; /* Colore Teal (lo stesso di prima) */
     border-bottom: 2px solid #779977;
 
     margin-left: 0px; /* Attaccato all'usage */
-    margin-right: 12px; /* SPAZIO DI SEPARAZIONE DALL'OROLOGIO */
+    margin-right: 12px; /* Spazio dopo il gruppo */
     margin-top: 4px;
     margin-bottom: 4px;
 
     padding-left: 2px;
     padding-right: 10px;
 
-    border-top-right-radius: 6px;
+    border-top-right-radius: 6px; /* Chiude il gruppo a destra */
 }
 
 /* Gestione Allarmi Temperatura (Rosso Nord) */
