@@ -31,6 +31,29 @@ tooltip label {
     color: #d8dee9;
 }
 
+/* --- TASTO DEL BUFFER AUDIO --- */
+
+#custom-proaudio {
+    padding: 0 10px;
+    margin: 4px 4px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Modalità CHILL (Default Nord) */
+#custom-proaudio.inactive {
+    background-color: #3b4252; /* Grigio Scuro */
+    color: #d8dee9; /* Testo Chiaro */
+}
+
+/* Modalità PRO (Evidenziato) */
+#custom-proaudio.active {
+    background-color: #bf616a; /* Rosso Nord (Aurora Red) */
+    color: #eceff4; /* Bianco */
+    /* Opzionale: aggiungi un bordo o animazione */
+    border-bottom: 2px solid #eceff4;
+}
+
 /* --- WORKSPACES (Corretto per Hyprland) --- */
 #workspaces button {
     padding: 0 8px;

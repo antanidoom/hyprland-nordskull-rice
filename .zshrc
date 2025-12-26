@@ -94,3 +94,7 @@ function update-rice() {
     
     echo "✅ Fatto! Ora vai in ~/dotfiles e fai git push."
 }
+
+# -- Comandi per modificare il buffer audio
+alias proaudio="pw-metadata -n settings 0 clock.force-quantum 256"
+alias chillvideo="pw-metadata -n settings 0 clock.force-quantum 1024"

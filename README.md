@@ -59,6 +59,13 @@ yay -S hyprland waybar kitty wofi swaync hyprlock hypridle tokyonight-gtk-theme-
        wtype noto-fonts-emoji piper libratbag
 ```
 
+Pro Audio Tools (Optional)
+```bash
+yay -S ardour qpwgraph wine-staging yabridge yabridgectl \
+       lsp-plugins x42-plugins calf guitarix
+```
+
+
 ### 2. Clone & Copy
 
 Clone this repository and copy the config files to your local folder. Backup your existing configs first!
@@ -108,3 +115,20 @@ sudo cp ~/dotfiles/wallpapers/fontanelle.png /usr/share/sddm/themes/sugar-candy/
 ## 🛠️ Custom Scripts
 
 - **Floating Network Manager:** Clicking the WiFi icon on Waybar opens `nmtui` in a floating, blurred Kitty window instead of the standard menu.
+- **Audio Latency Switcher**: A custom Waybar module to toggle between **Chill Mode** (1024 samples, low CPU) and **Pro Mode** (256 samples, low latency for recording). Click the icon to switch.    
+
+## 🎸 Pro Audio Setup
+
+This rice is configured for low-latency audio recording and mixing on Arch.
+
+ - Engine: PipeWire (configured as JACK server).
+
+ - DAW: Ardour 8.
+
+ - Plugins:
+
+   - Native Linux plugins (LSP, Calf, Guitarix).
+
+   - Windows VST3 plugins (Neural DSP, etc.) bridged via Yabridge & Wine Staging.
+
+ - Routing: Managed visually via qpwgraph.
