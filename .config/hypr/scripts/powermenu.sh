@@ -23,7 +23,8 @@ selected=$(echo -e "$options" | wofi --show dmenu --conf "$CONF" --style "$STYLE
 
 case $selected in
     "$lock")
-        loginctl lock-session
+        # Lancia hyprlock direttamente (se non è già attivo)
+        pidof hyprlock || hyprlock
         ;;
     "$suspend")
         systemctl suspend

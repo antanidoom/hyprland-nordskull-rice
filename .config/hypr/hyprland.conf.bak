@@ -1,0 +1,432 @@
+# =========================================================
+# Hyprland configuration - Nord Style + Waybar + Kitty
+# =========================================================
+
+################
+### MONITORS ###
+################
+# Configurazione Monitor Xiaomi 34" Ultrawide
+# Sintassi: monitor=NOME, RISOLUZIONE@HZ, POSIZIONE, SCALA
+monitor = DP-1, 3440x1440@144, 0x0, 1
+
+# Fallback di sicurezza (se il file sopra non esiste o è vuoto)
+#monitor= ,preferred,auto,auto, 1
+
+
+###################
+### MY PROGRAMS ###
+###################
+$terminal = kitty
+$fileManager = thunar
+$menu = wofi --show drun
+$browser = firefox
+
+#################
+### AUTOSTART ###
+#################
+exec-once = env LC_TIME=it_IT.utf8 waybar
+exec-once = hyprpaper
+exec-once = swaync
+exec-once = $terminal
+exec-once = $browser
+exec-once = hypridle
+# --- DROPBOX (con esecuzione con un minimo di ritardo) ---
+exec-once = sleep 5 && env XDG_CURRENT_DESKTOP=Unity dropbox
+# --- POLKIT AGENT (Per chiedere le password GUI) ---
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec-once = gnome-keyring-daemon --start --components=secrets
+
+
+#############################
+### ENVIRONMENT VARIABLES ###
+#############################
+env = XCURSOR_SIZE,24
+env = HYPRCURSOR_SIZE,24
+env = BROWSER,firefox
+
+###################
+### PERMISSIONS ###
+###################
+# Leave default; change if needed for screencasting/plugins
+
+#####################
+### LOOK AND FEEL ###
+#####################
+general {
+    gaps_in = 5
+    gaps_out = 20
+    border_size = 2
+    col.active_border = rgba(88C0D0ee)   # Nord blue
+    col.inactive_border = rgba(4C566Aaa) # Nord grey
+    resize_on_border = false
+    allow_tearing = false
+    layout = dwindle
+}
+
+decoration {
+    rounding = 10               # Bordi arrotondati (sta bene con Wofi/Waybar)
+
+    # OPACITÀ (0.0 - 1.0)
+    # active_opacity: quanto è trasparente la finestra che stai usando
+    # inactive_opacity: quanto sono trasparenti quelle in secondo piano
+    active_opacity = 0.90       # 90% solido (vedi un po' i teschi dietro)
+    inactive_opacity = 0.80     # 80% solido (più trasparente se non la usi)
+
+    # SFOCATURA (Blur) - Fondamentale per leggere il testo su sfondo trasparente
+    blur {
+        enabled = true
+        size = 6                # Più alto = più sfocato (effetto vetro smerigliato)
+        passes = 2              # Qualità della sfocatura (2 o 3 è ottimo)
+        new_optimizations = true
+        ignore_opacity = true   # Sfoca anche se l'opacità è alta
+    }
+
+    # Ombre (opzionale, danno profondità)
+    shadow {
+        enabled = true
+        range = 4
+        render_power = 3
+        color = rgba(1a1a1aee)
+    }
+}
+
+xwayland {
+  force_zero_scaling = true
+}
+
+animations {
+    enabled = true
+
+    # --- CURVE DI BEZIER (La "Fisica" del movimento) ---
+    # myBezier: Parte veloce, frena dolcemente con un leggerissimo rimbalzo (overshoot)
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    # linear: Movimento costante (utile per i bordi)
+    bezier = linear, 0.0, 0.0, 1.0, 1.0
+
+    # --- FINESTRE (Windows) ---
+    # Apertura: Popin 80% (La finestra "esplode" leggermente dal centro)
+    animation = windows, 1, 7, myBezier
+    # Chiusura: Idem, si riduce verso il centro
+    animation = windowsOut, 1, 7, default, popin 80%
+    # Spostamento: Se trascini una finestra, questa segue il mouse fluidamente
+    animation = windowsMove, 1, 7, myBezier, slide
+
+    # --- BORDI (Borders) ---
+    # Quando cambi finestra attiva, il colore del bordo cambia fluidamente
+    animation = border, 1, 10, default
+    # Se hai gradienti nel bordo, ruotano (opzionale)
+    animation = borderangle, 1, 8, default
+
+    # --- DISSOLVENZA (Fade) ---
+    # Le trasparenze e le ombre appaiono/scompaiono gradualmente
+    animation = fade, 1, 2, default
+
+    # --- WORKSPACES (Desktop) - IL PUNTO CHIAVE ---
+    # Questo attiva lo SLIDE orizzontale quando cambi desktop (es. Super+1, Super+2)
+    # 1 = abilitato
+    # 6 = velocità (più basso è più veloce, 6 è bilanciato)
+    # default = usa la curva standard (o metti myBezier per più sprint)
+    # slide = lo stile dell'animazione
+    animation = workspaces, 1, 6, default, slide
+}
+
+dwindle {
+    pseudotile = true
+    preserve_split = true
+}
+
+master {
+    new_status = master
+}
+
+misc {
+    force_default_wallpaper = -1
+    disable_hyprland_logo = true
+    # Abilita il Variable Refresh Rate (FreeSync)
+    vrr = 2
+}
+
+# THUNAR (File Manager)
+# 0.90 quando lo usi (Active), 0.80 quando non lo usi (Inactive)
+windowrulev2 = opacity 0.85 0.80, class:^(thunar)$
+
+# Assicurati che non applichi trasparenza ai menu a tendina o popup interni
+windowrulev2 = opacity 1.0 1.0, class:^(thunar)$, title:^(Attenzione|Errore|Conferma.*)$
+
+# ZED (Editor)
+# Consiglio: Per gli editor di codice non scendere sotto 0.90 o stanca la vista
+windowrulev2 = opacity 0.90 0.85, class:^(dev.zed.Zed)$
+
+
+#Regole per Kitty Terminal
+windowrulev2 = opacity 0.85 0.85, class:^(kitty)$
+
+# Regole per gsimplecal
+windowrulev2 = float, class:^(gsimplecal)$
+windowrulev2 = pin, class:^(gsimplecal)$
+windowrulev2 = noborder, class:^(gsimplecal)$
+windowrulev2 = animation slide, class:^(gsimplecal)$
+windowrulev2 = move cursor -50% 25, class:^(gsimplecal)$
+
+# Rende video e full-screen completamente opachi
+windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*YouTube.*)$
+windowrulev2 = opacity 1.0 override 1.0 override, fullscreen:1
+
+# --- WOFI ANIMATION & BLUR ---
+# Rende wofi sfocato sotto (effetto vetro)
+layerrule = blur, wofi
+layerrule = ignorezero, wofi
+
+# Animazione: compare dal centro con un leggero zoom (popin)
+windowrulev2 = animation popin, class:^(wofi)$
+windowrulev2 = move cursor -50% -50%, class:^(wofi)$
+windowrulev2 = float, class:^(wofi)$
+layerrule = blur, wofi
+layerrule = ignorezero, wofi
+
+# Regola per far galleggiare Cava
+windowrulev2 = float, title:^(Cava)$
+windowrulev2 = size 800 400, title:^(Cava)$
+windowrulev2 = center, title:^(Cava)$
+
+# --- SWAYNC BLUR ---
+# Sfoca lo sfondo dietro al centro notifiche
+layerrule = blur, swaync-control-center
+layerrule = ignorezero, swaync-control-center
+
+# Sfoca lo sfondo dietro le notifiche singole (toast)
+layerrule = blur, swaync-notification-window
+layerrule = ignorezero, swaync-notification-window
+
+# Opzionale: scurisce un po' il resto dello schermo quando apri il centro notifiche
+layerrule = dimaround, swaync-control-center
+
+# --- FLOATING KITTY (Network, etc) ---
+windowrulev2 = float, class:^(kitty-floating)$
+windowrulev2 = size 800 600, class:^(kitty-floating)$
+windowrulev2 = center, class:^(kitty-floating)$
+windowrulev2 = animation popin, class:^(kitty-floating)$
+
+# --- PAVUCONTROL (Volume) ---
+windowrulev2 = float, class:^(org.pulseaudio.pavucontrol)$
+windowrulev2 = size 800 600, class:^(org.pulseaudio.pavucontrol)$
+
+# --- CALCOLATRICE FLOTTANTE ---
+
+# 1. Gnome Calculator
+windowrulev2 = float, class:^(org.gnome.Calculator)$
+windowrulev2 = size 400 500, class:^(org.gnome.Calculator)$
+windowrulev2 = center, class:^(org.gnome.Calculator)$
+windowrulev2 = opacity 0.90 0.90, class:^(org.gnome.Calculator)$
+
+# --- POSIZIONAMENTO ---
+# Per averla perfetta al centro
+windowrulev2 = center, class:^(org.pulseaudio.pavucontrol)$
+
+# --- STILE ---
+windowrulev2 = opacity 0.90 0.90, class:^(org.pulseaudio.pavucontrol)$
+windowrulev2 = animation popin, class:^(org.pulseaudio.pavucontrol)$
+
+# --- WLOGOUT BLUR ---
+layerrule = blur, wlogout
+layerrule = ignorezero, wlogout
+
+# --- PATH OF EXILE 2 FIX ---
+# Identifichiamo la finestra con la classe esatta che ci hai dato
+
+# 1. Forza il tiling (impedisce che diventi floating da sola)
+windowrulev2 = tile, class:^(steam_app_2694490)$
+
+# 2. Forza il fullscreen vero (copre barra e bordi)
+windowrulev2 = fullscreen, class:^(steam_app_2694490)$
+
+# 3. Impedisce al gioco di ridimensionarsi o uscire dal fullscreen
+windowrulev2 = suppressevent maximize, class:^(steam_app_2694490)$
+windowrulev2 = suppressevent fullscreen, class:^(steam_app_2694490)$
+
+# 4. Rimuovi decorazioni (bordi, ombre, blur) per guadagnare FPS e pulizia
+windowrulev2 = noborder, class:^(steam_app_2694490)$
+windowrulev2 = noshadow, class:^(steam_app_2694490)$
+windowrulev2 = noblur, class:^(steam_app_2694490)$
+windowrulev2 = norounding, class:^(steam_app_2694490)$
+
+# 5. Impedisce lo spegnimento dello schermo mentre giochi
+windowrulev2 = idleinhibit always, class:^(steam_app_2694490)$
+
+# --- IDLE INHIBIT (Mai bloccare se in Fullscreen) ---
+# Se una finestra è fullscreen, disabilita hypridle
+windowrulev2 = idleinhibit fullscreen, class:^(.*)$
+# Esempio: Mai bloccare se la finestra è di Lutris o Steam
+windowrulev2 = idleinhibit focus, class:^(lutris)$
+windowrulev2 = idleinhibit focus, class:^(steam_app_.*)$
+
+# --- Plugin Audio Flottanti (Regola generica per finestre plugin comuni) ---
+windowrulev2 = float, class:^(Ardour.*)$, title:^(.*Plugin.*)$
+windowrulev2 = float, class:^(vst.*)$
+windowrulev2 = float, title:^(.*DrumGizmo.*)$
+
+# --- YABRIDGE / WINE FIX (Coordinate Offset) ---
+# Applichiamo le regole sia a Yabridge che a Wine (winecfg) dato che il problema è comune
+
+# 1. Regole Base (Float)
+windowrulev2 = float, class:^(yabridge-host.*)$
+windowrulev2 = float, class:^(wine.*)$
+windowrulev2 = float, title:^(.*Neural.*)$
+
+# 2. AZZERAMENTO GEOMETRIA (Cruciale per il fix del mouse)
+# Impostiamo la dimensione fisica del bordo a 0 e niente arrotondamento.
+# Questo impedisce che Hyprland aggiunga pixel "invisibili" che spostano il click.
+windowrulev2 = bordersize 0, class:^(yabridge-host.*)$
+windowrulev2 = rounding 0, class:^(yabridge-host.*)$
+windowrulev2 = bordersize 0, class:^(wine.*)$
+windowrulev2 = rounding 0, class:^(wine.*)$
+
+# 3. Disabilita decorazioni visive (Ombre e Bordi disegnati)
+windowrulev2 = noshadow, class:^(yabridge-host.*)$
+windowrulev2 = noborder, class:^(yabridge-host.*)$
+windowrulev2 = noshadow, class:^(wine.*)$
+windowrulev2 = noborder, class:^(wine.*)$
+
+# 4. Performance (Niente sfocature o animazioni che aggiungono lag)
+windowrulev2 = noanim, class:^(yabridge-host.*)$
+windowrulev2 = noblur, class:^(yabridge-host.*)$
+windowrulev2 = noanim, class:^(wine.*)$
+windowrulev2 = noblur, class:^(wine.*)$
+
+# 5. Tentativo di Focus (Lascialo commentato per ora, attivalo se i click vengono ignorati del tutto)
+# windowrulev2 = stayfocused, class:^(yabridge-host.*)$
+
+# --- OVERSTEER per il volante logitech ---
+
+windowrulev2 = float, class:^(io.github.berarma.Oversteer)$
+windowrulev2 = center, class:^(io.github.berarma.Oversteer)$
+
+#################
+### INPUT ###
+#################
+input {
+    kb_layout = it
+    follow_mouse = 1
+    sensitivity = 0
+
+    touchpad {
+        natural_scroll = false
+    }
+}
+
+gesture = 3, horizontal, workspace
+
+###################
+### KEYBINDINGS ###
+###################
+$mainMod = SUPER
+
+# Terminal/FileManager/Menu
+bind = $mainMod,RETURN,exec,$terminal
+bind = $mainMod,E,exec,$fileManager
+bind = $mainMod,SPACE, exec, pkill wofi || wofi --show drun --style ~/.config/wofi/style.css
+bind = $mainMod,B,exec,$browser
+
+# Window management
+bind = $mainMod,Q,killactive,
+#bind = $mainMod,M,exit,
+bind = $mainMod, M, exec, ~/.config/hypr/scripts/powermenu.sh
+bind = $mainMod,V,togglefloating,
+bind = $mainMod,O,pseudo,
+bind = $mainMod,J,togglesplit,
+
+
+# Move focus
+bind = $mainMod,left,movefocus,l
+bind = $mainMod,right,movefocus,r
+bind = $mainMod,up,movefocus,u
+bind = $mainMod,down,movefocus,d
+
+# Workspaces
+bind = $mainMod,1,workspace,1
+bind = $mainMod,2,workspace,2
+bind = $mainMod,3,workspace,3
+bind = $mainMod,4,workspace,4
+bind = $mainMod,5,workspace,5
+bind = $mainMod,6,workspace,6
+bind = $mainMod,7,workspace,7
+bind = $mainMod,8,workspace,8
+bind = $mainMod,9,workspace,9
+bind = $mainMod,0,workspace,10
+
+bind = $mainMod SHIFT,1,movetoworkspace,1
+bind = $mainMod SHIFT,2,movetoworkspace,2
+bind = $mainMod SHIFT,3,movetoworkspace,3
+bind = $mainMod SHIFT,4,movetoworkspace,4
+bind = $mainMod SHIFT,5,movetoworkspace,5
+bind = $mainMod SHIFT,6,movetoworkspace,6
+bind = $mainMod SHIFT,7,movetoworkspace,7
+bind = $mainMod SHIFT,8,movetoworkspace,8
+bind = $mainMod SHIFT,9,movetoworkspace,9
+bind = $mainMod SHIFT,0,movetoworkspace,10
+
+# Scratchpad
+bind = $mainMod,S,togglespecialworkspace,magic
+bind = $mainMod SHIFT,S,movetoworkspace,special:magic
+
+# Mouse bindings
+bindm = $mainMod,mouse:272,movewindow
+bindm = $mainMod,mouse:273,resizewindow
+
+# --- ZOOM con MOUSE (Super + Scroll) ---
+bind = $mainMod, mouse_down, exec, ~/.config/hypr/scripts/zoom.sh in
+bind = $mainMod, mouse_up, exec, ~/.config/hypr/scripts/zoom.sh out
+
+
+# --- CAMBIO PROFILI MOUSE G502 ---
+# Profilo 0 (Desktop)
+bind = $mainMod, F1, exec, ratbagctl "Logitech G502 HERO Gaming Mouse" profile active set 0 && notify-send -u low "Mouse: Desktop 🖱️" "DPI Standard - Nord LED"
+
+# Profilo 1 (Gaming)
+bind = $mainMod, F2, exec, ratbagctl "Logitech G502 HERO Gaming Mouse" profile active set 1 && notify-send -u low "Mouse: Gaming 🎮" "DPI Alto - Red LED"
+
+# --- FIX TASTIERA US (Simboli Minore/Maggiore) ---
+# Usa ALT + virgola per fare <
+bind = ALT, comma, exec, wtype "<"
+
+# Usa ALT + punto per fare >
+bind = ALT, period, exec, wtype ">"
+
+# Multimedia
+bindel = ,XF86AudioRaiseVolume,exec,wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindel = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindel = ,XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindel = ,XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindel = ,XF86MonBrightnessUp,exec,brightnessctl -e4 -n2 set 5%+
+bindel = ,XF86MonBrightnessDown,exec,brightnessctl -e4 -n2 set 5%-
+
+# Controllo Spotify con SUPER + Tasti Freccia o P
+bind = $mainMod, P, exec, playerctl -p spotify play-pause      # WIN + P = Play/Pausa
+bind = $mainMod, BRACKETRIGHT, exec, playerctl -p spotify next # WIN + ] = Prossima
+bind = $mainMod, BRACKETLEFT, exec, playerctl -p spotify previous # WIN + [ = Precedente
+
+# SCREENSHOT
+# Screenshot Smart (Click su notifica apre la cartella)
+bind = , PRINT, exec, ~/.config/hypr/scripts/screenshot.sh
+
+# Playerctl
+bindl = ,XF86AudioNext,exec,playerctl next
+bindl = ,XF86AudioPause,exec,playerctl play-pause
+bindl = ,XF86AudioPlay,exec,playerctl play-pause
+bindl = ,XF86AudioPrev,exec,playerctl previous
+
+# Emoji Picker (Bemoji) - Apre Wofi per selezionare emoji
+# -t: digita automaticamente l'emoji
+# -n: non andare a capo dopo aver digitato
+bind = $mainMod, period, exec, BEMOJI_PICKER_ARGS='--style /home/emanuele/.config/wofi/style.css' bemoji -t -n
+
+##############################
+### WINDOWS AND WORKSPACES ###
+##############################
+windowrule = suppressevent maximize,class:.*
+windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
+##############################
+### NORD-THEME COLORS (Optional External)
+##############################
+#source = ~/.config/hypr/nordColors.conf
