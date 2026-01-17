@@ -7,16 +7,16 @@
 /* Il pannello principale (Centro di Controllo) */
 .control-center {
     background: rgba(46, 52, 64, 0.85); /* Nord Dark con trasparenza */
-    border: 2px solid #81A1C1;          /* Bordo Frost Blue */
+    border: 2px solid #81a1c1; /* Bordo Frost Blue */
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     padding: 10px;
 }
 
 /* Il widget del Titolo e pulsante Cancella */
 .widget-title {
-    color: #ECEFF4;
-    background: #3B4252;
+    color: #eceff4;
+    background: #3b4252;
     padding: 5px 10px;
     margin: 10px;
     border-radius: 8px;
@@ -25,35 +25,35 @@
 
 .widget-title > button {
     font-size: 12px;
-    color: #D8DEE9;
-    background: #4C566A;
+    color: #d8dee9;
+    background: #4c566a;
     border: none;
     border-radius: 6px;
     padding: 4px 12px;
 }
 
 .widget-title > button:hover {
-    background: #BF616A; /* Rosso Nord al passaggio del mouse */
-    color: #ECEFF4;
+    background: #bf616a; /* Rosso Nord al passaggio del mouse */
+    color: #eceff4;
 }
 
 /* Il widget "Non Disturbare" */
 .widget-dnd {
-    background: #3B4252;
+    background: #3b4252;
     margin: 0px 10px 10px 10px;
     padding: 5px 10px;
     border-radius: 8px;
-    color: #D8DEE9;
+    color: #d8dee9;
 }
 
 /* Lo switch del DND */
 .widget-dnd > switch {
-    background: #4C566A;
+    background: #4c566a;
     border-radius: 8px;
 }
 
 .widget-dnd > switch:checked {
-    background: #88C0D0; /* Acceso diventa Cyan */
+    background: #88c0d0; /* Acceso diventa Cyan */
 }
 
 /* Il widget etichetta (Label) */
@@ -63,16 +63,16 @@
 
 .widget-label > label {
     font-size: 14px;
-    color: #D8DEE9;
+    color: #d8dee9;
 }
 
 /* Il Player Musicale (Mpris) */
 .widget-mpris {
-    background: #3B4252;
+    background: #3b4252;
     padding: 10px;
     margin: 10px;
     border-radius: 8px;
-    color: #ECEFF4;
+    color: #eceff4;
 }
 
 .widget-mpris > button {
@@ -88,28 +88,53 @@
 
 .notification {
     background: rgba(46, 52, 64, 0.95);
-    border: 1px solid #81A1C1;
+    border: 1px solid #81a1c1;
     border-radius: 12px;
     padding: 10px;
     margin: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Titolo della notifica */
 .summary {
     font-size: 14px;
-    color: #88C0D0; /* Titolo azzurro */
+    color: #88c0d0; /* Titolo azzurro */
     font-weight: 800;
 }
 
 /* Corpo della notifica */
 .body {
     font-size: 13px;
-    color: #D8DEE9;
+    color: #d8dee9;
 }
 
 /* Notifiche Critiche (Batteria scarica, Errori) */
 .notification.critical {
     background: rgba(191, 97, 106, 0.9); /* Rosso Nord */
-    border: 2px solid #BF616A;
+    border: 2px solid #bf616a;
+}
+
+/* Griglia dei bottoni */
+.widget-buttons-grid {
+    padding: 10px;
+    margin: 10px;
+    background-color: #3b4252; /* Grigio scuro */
+    border-radius: 12px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background-color: #4c566a;
+    color: #eceff4;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 5px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background-color: #88c0d0; /* Azzurro Nord */
+    color: #2e3440;
 }

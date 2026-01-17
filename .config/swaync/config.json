@@ -27,12 +27,7 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": [
-    "title",
-    "dnd",
-    "mpris",
-    "notifications"
-  ],
+  "widgets": ["title", "dnd", "mpris", "buttons-grid", "notifications"],
   "widget-config": {
     "title": {
       "text": "Centro Notifiche",
@@ -45,6 +40,18 @@
     "mpris": {
       "image-size": 96,
       "image-radius": 12
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "📋 Clipboard",
+          "command": "cliphist list | wofi --show dmenu --style ~/.config/wofi/style.css | cliphist decode | wl-copy"
+        },
+        {
+          "label": "📷 Screenshot",
+          "command": "~/.config/hypr/scripts/screenshot.sh"
+        }
+      ]
     }
   }
 }
